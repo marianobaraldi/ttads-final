@@ -1,5 +1,12 @@
-<p>
-  creacion-torneo works!
-</p>
+
+<h2>Equipos</h2>
+<ul>
+  <li *ngFor="let equi of equipos">
+      <input type="checkbox" name="seleccionados" id="{{equi._id}}">
+    {{equi.nombre}}
+  </li>
+</ul>
+  
 <button (click)="generaTorneo()">Probar Algoritmo</button>
+
 <p>{{torneo}}</p>

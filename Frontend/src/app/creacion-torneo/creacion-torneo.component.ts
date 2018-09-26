@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-creacion-torneo',
@@ -6,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./creacion-torneo.component.css']
 })
 export class CreacionTorneoComponent implements OnInit {
+  urlEquipos: string = 'http://localhost:3000/api/equipos/';  
   torneo;
-
-  constructor() { }
+  equipos;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get(this.urlEquipos).subscribe(data => {
+      this.equipos = data;
+    });
   }
 
   generaTorneo(){
