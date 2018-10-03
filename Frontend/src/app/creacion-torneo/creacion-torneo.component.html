@@ -2,11 +2,14 @@
 <h2>Equipos</h2>
 <ul>
   <li *ngFor="let equi of equipos">
-      <input type="checkbox" name="seleccionados" id="{{equi._id}}">
-    {{equi.nombre}}
+      <input type="checkbox" name="seleccionados" id="{{equi._id}}" (change)="onChange(equi._id, $event.target.checked)">
+      <label for="{{equi._id}}">{{equi.nombre}} - {{equi.url}}</label>
+      <img src="./assets/img/{{equi.url}}" alt="">
   </li>
 </ul>
-  
+{{equiposElegidosArray | json}}
+
+
 <button (click)="generaTorneo()">Probar Algoritmo</button>
 
 <p>{{torneo}}</p>

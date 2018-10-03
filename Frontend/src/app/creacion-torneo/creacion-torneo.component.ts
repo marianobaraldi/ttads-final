@@ -12,6 +12,9 @@ export class CreacionTorneoComponent implements OnInit {
   urlEquipos: string = 'http://localhost:3000/api/equipos/';  
   torneo;
   equipos;
+  equiposElegidosArray: Array<any> = [];
+  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -20,9 +23,18 @@ export class CreacionTorneoComponent implements OnInit {
     });
   }
 
+  onChange(id_equipo:string, isChecked: boolean) {
+    if(isChecked) {
+      this.equiposElegidosArray.push(id_equipo);
+    } else {
+      let index = this.equiposElegidosArray.indexOf(id_equipo);
+      this.equiposElegidosArray.splice(index,1);
+    }
+}
+
   generaTorneo(){
-    var equipos = [1,2,3,4,5,6,7,8];
-    equipos = equipos
+    var equipos = this.equiposElegidosArray;
+    equipos = this.shuffle(equipos);
     var cantFechas = equipos.length-1;
     var fechas = []; //torneo final, arreglo de fechas
     var f = [];  //una fecha 
@@ -94,5 +106,15 @@ export class CreacionTorneoComponent implements OnInit {
     return res;
   }
 
+  shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
 
 }
