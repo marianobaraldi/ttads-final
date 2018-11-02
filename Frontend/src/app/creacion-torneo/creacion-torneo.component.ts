@@ -57,7 +57,7 @@ clickOnTournamentButton(){
 }
 
   generaTorneo(){
-    var equipos = this.equiposElegidosArray.map(x => x.url);
+    var equipos = this.equiposElegidosArray;
     equipos = this.shuffle(equipos);
     var cantFechas = equipos.length-1;
     var fechas = []; //torneo final, arreglo de fechas
@@ -66,15 +66,13 @@ clickOnTournamentButton(){
     //https://stackoverflow.com/questions/6648512/scheduling-algorithm-for-a-round-robin-tournament
     var upper = [];
     var lower = [];
-    for (var i = 0; i < equipos.length; i++) {  //cargo mitad del arreglo en upper y mitad en lower (y revierto el lower)
-      if(i < (equipos.length / 2) ){
-        upper.push(equipos[i]);
-      }else{
-        lower.push(equipos[i]); 
-      }
-    }
+
+    //cargo mitad del arreglo en upper y mitad en lower (y revierto el lower)
+    upper = equipos.filter((_,i) => i % 2 == 0)
+    lower = equipos.filter((_,i) => i % 2 == 1)
     lower = lower.reverse();
-    f = this.armafecha(upper,lower);  //armo primera fecha
+
+    f =  upper.map((e, i) => [e, lower[i]]); //armo primera fecha pares de equipos
     fechas.push(f);
 
     
@@ -83,31 +81,12 @@ clickOnTournamentButton(){
       upper = this.armaUpper(upper,lower[0]);
       lower = this.armaLower(lower,lastUpper);  
 
-      f = this.armafecha(upper,lower);
+      //arma fecha pares de equipos
+      f = upper.map((e, i) => [e, lower[i]]);
       fechas.push(f);
     }
-                                                            //paso a string para imprimir en pantalla
-    var fechasString="";
-    for (var i = 0; i < fechas.length; i++) {
-      fechasString += "------ FECHA "+(i+1)+"------ ";
-      fechasString += fechas[i];
-      
-    }
-    this.torneoDev = fechasString;
-    this.torneo = fechas;
+    this.torneo = fechas.map(f =>  f.map(p => p.map(e => e.url)));
     
-    
-
-  }
-
-  //Enfrenta los equipos de upper con lower
-  armafecha(upper, lower){
-    var fecha = [];
-    for (var i = 0; i < upper.length; i++) {
-      fecha.push(upper[i]);
-      fecha.push(lower[i]); 
-    }
-    return fecha;
   }
 
   //El primer elemento de upper se queda, sube el primero del lower, y el resto de upper se corren para la derecha (se pierde el ultimo)
