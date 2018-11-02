@@ -11,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from "@angular/http";
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { CreacionTorneoComponent } from './creacion-torneo/creacion-torneo.component';
+import { MuestraFechasComponent } from './muestra-fechas/muestra-fechas.component';
+import { LoaderFechas } from './loader-fechas.service'
+import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
   declarations: [
@@ -20,12 +23,14 @@ import { CreacionTorneoComponent } from './creacion-torneo/creacion-torneo.compo
     HeaderComponent,
     DetallePartidoComponent,
     MyDashboardComponent,
-    CreacionTorneoComponent
+    CreacionTorneoComponent,
+    MuestraFechasComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    CarouselModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -47,7 +52,8 @@ import { CreacionTorneoComponent } from './creacion-torneo/creacion-torneo.compo
       }
     ])
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [LoaderFechas],
+  bootstrap: [AppComponent],
+  entryComponents: [MuestraFechasComponent]
 })
 export class AppModule { }

@@ -12,6 +12,9 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.get('/', function(req,res){
+  res.json({ message: 'Mongo Service is up! Hello world!'});
+});
 
 mongoose.connect('mongodb://localhost/tp2', { useMongoClient: true });
 require('./models/equipo.js');

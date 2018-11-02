@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-
+import{ LoaderFechas } from '../loader-fechas.service'
+import { MuestraFechasComponent } from '../muestra-fechas/muestra-fechas.component';
 
 @Component({
   selector: 'app-creacion-torneo',
@@ -10,30 +11,53 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CreacionTorneoComponent implements OnInit {
   urlEquipos: string = 'http://localhost:3000/api/equipos/';  
-  torneo;
+  torneo;torneoDev;
   equipos;
   equiposElegidosArray: Array<any> = [];
+  serviceLoader;
+  
+  @ViewChild('dynamic', { 
+    read: ViewContainerRef 
+  }) viewContainerRef: ViewContainerRef
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    @Inject(LoaderFechas) service){
+      this.serviceLoader = service
+     }
 
-  ngOnInit() {
+
+  ngOnInit() {    
+    this.getEquipos();
+    
+    this.serviceLoader.setRootViewContainerRef(this.viewContainerRef);
+  }
+
+  getEquipos(){
     this.http.get(this.urlEquipos).subscribe(data => {
       this.equipos = data;
     });
   }
 
-  onChange(id_equipo:string, isChecked: boolean) {
+  onChange(equipo:any, isChecked: boolean) {
     if(isChecked) {
-      this.equiposElegidosArray.push(id_equipo);
+      this.equiposElegidosArray.push(equipo);
     } else {
-      let index = this.equiposElegidosArray.indexOf(id_equipo);
+      let index = this.equiposElegidosArray.indexOf(equipo);
       this.equiposElegidosArray.splice(index,1);
     }
 }
 
+clickOnTournamentButton(){
+
+  this.generaTorneo();
+  this.viewContainerRef.clear();
+  this.serviceLoader.addDynamicComponent();
+  this.serviceLoader.componentRef.instance.torneo = this.torneo;
+}
+
   generaTorneo(){
-    var equipos = this.equiposElegidosArray;
+    var equipos = this.equiposElegidosArray.map(x => x.url);
     equipos = this.shuffle(equipos);
     var cantFechas = equipos.length-1;
     var fechas = []; //torneo final, arreglo de fechas
@@ -69,7 +93,8 @@ export class CreacionTorneoComponent implements OnInit {
       fechasString += fechas[i];
       
     }
-    this.torneo = fechasString;
+    this.torneoDev = fechasString;
+    this.torneo = fechas;
     
     
 
