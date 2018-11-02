@@ -58,67 +58,40 @@ clickOnTournamentButton(){
 
   generaTorneo(){
     var equipos = this.equiposElegidosArray;
-    equipos = this.shuffle(equipos);
+    //mezcla los elementos
+    equipos = equipos.map(a => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map(a => a[1]);
     var cantFechas = equipos.length-1;
     var fechas = []; //torneo final, arreglo de fechas
     var f = [];  //una fecha 
+
     //Metodo ROUND-ROBIN
     //https://stackoverflow.com/questions/6648512/scheduling-algorithm-for-a-round-robin-tournament
-    var upper = [];
-    var lower = [];
 
     //cargo mitad del arreglo en upper y mitad en lower (y revierto el lower)
-    upper = equipos.filter((_,i) => i % 2 == 0)
-    lower = equipos.filter((_,i) => i % 2 == 1)
+    var upper = equipos.filter((_,i) => i % 2 == 0);
+    var lower = equipos.filter((_,i) => i % 2 == 1);
     lower = lower.reverse();
 
-    f =  upper.map((e, i) => [e, lower[i]]); //armo primera fecha pares de equipos
-    fechas.push(f);
+    //arma primera fecha emparejando los elementos de upper y lower
+    fechas.push(upper.map((e, i) => [e, lower[i]]));
 
     
-    for (var i = 0; i < cantFechas-1; i++) {    //resto de las fechas
-      var lastUpper = upper [upper.length-1]
-      upper = this.armaUpper(upper,lower[0]);
-      lower = this.armaLower(lower,lastUpper);  
+    for (var i = 0; i < cantFechas-1; i++) {    //resto de las fechas      
+      //lo guardo como array para
+      var lastUpper = upper.slice(upper.length-1,upper.length);      
+      
+      //El primer elemento de upper se queda, sube el primero del lower, y el resto de upper se corren para la derecha (se pierde el ultimo)
+      upper = upper.slice(0,1).concat(lower.slice(0,1)).concat(upper.slice(1,upper.length-1));
+       //Todos los elementos de lower se corren para la izquierda (se pierde el primero), y entra al final el ultimo de upper
+      lower = lower.slice(1,lower.length).concat(lastUpper)
 
       //arma fecha pares de equipos
-      f = upper.map((e, i) => [e, lower[i]]);
-      fechas.push(f);
+      fechas.push(upper.map((e, i) => [e, lower[i]]));
     }
-    this.torneo = fechas.map(f =>  f.map(p => p.map(e => e.url)));
+    this.torneo = fechas.map(f =>  f.map(p => p.map(e => e.url)));    
     
   }
 
-  //El primer elemento de upper se queda, sube el primero del lower, y el resto de upper se corren para la derecha (se pierde el ultimo)
-  armaUpper(upper, firstLower){
-    var res = [];
-    res[0] = upper[0];
-    res[1] = firstLower;
-    for (var i = 1; i < upper.length-1; i++) {
-      res[i+1] = upper[i]; 
-    }
-    return res;
-  }
 
-  //Todos los elementos de lower se corren para la izquierda (se pierde el primero), y entra al final el ultimo de upper
-  armaLower(lower, lastUpper){
-    var res = [];
-    for (var i = 0; i < lower.length-1; i++) {
-      res[i] = lower[i+1];
-    }
-    res[lower.length-1] = lastUpper;
-    return res;
-  }
-
-  shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
 
 }
