@@ -2,7 +2,8 @@
 <carousel-component >
     <div *ngFor="let fecha of torneo;" class="item-carousel">
       <div *ngFor="let partido of fecha;" > <!--Aca deberia iterarse un componente tipo card que muestre el partido mandandoselo-->
-        <img src="./assets/img/{{partido}}" height="50px" alt="">
+        <img *ngFor="let equipo of partido" src="./assets/img/{{equipo}}" height="50px" alt="">
+        <br>
       </div>
     </div>
 </carousel-component>
