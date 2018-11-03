@@ -6,3 +6,10 @@ INTEGRANTES:
   - Emiliozzi Gino
   - Garaventa Juan Bautista
   - Miño Mauricio
+  
+  
+Trabajo Final
+
+INTEGRANTES:
+  - Baraldi Mariano
+  - Emiliozzi Gino
