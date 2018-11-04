@@ -21,6 +21,8 @@ require('./models/equipo.js');
 require('./models/partido.js');
 require('./models/evento.js');
 require('./models/tipo_evento.js');
+require('./models/fecha.js');
+require('./models/torneo.js');
 
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;

@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-var Torneo = mongoose.model('torneo');
+var Fecha = mongoose.model('fecha');
 var router=require('express').Router()
 
 //GET ALL
 router.get('/', (req, res, next) => {
-  Torneo.find().
-  populate('fechas').
+  Fecha.find().
+  populate('partidos').
   exec(function (err, result) {
     if (err) {
       res.status(500).send(err);
@@ -14,52 +14,52 @@ router.get('/', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.send("No existe ningún torneo");
+      res.send("No existe ninguna fecha");
     }
   });
 });
 
 //GET ONE
 router.get('/:id', (req, res, next) => {
-  Torneo.findOne({_id: req.params.id}, function (err, result) {
+  Fecha.findOne({_id: req.params.id}, function (err, result) {
     if (err) {
       res.status(500).send(err);
     } 
     if(result) {
       res.json(result);
     } else {
-      res.send("No existe el torneo buscado");
+      res.send("No existe la fecha buscada");
     } 
   });
 });
 
 //CREATE
 router.post('/', (req, res, next) => {
-  let nombreNuevo=req.body.nombre;
-  let fechas=req.body.fechas;
-  var TorneoNuevo = new Torneo({
-      nombre: nombreNuevo,
-      fechas: fechas
+  let numeroNuevo=req.body.numero;
+  let partidos=req.body.partidos;
+  var FechaNueva = new Fecha({
+      numero: numeroNuevo,
+      partidos: partidos
   })
-  TorneoNuevo.save((err) => {
+  FechaNueva.save((err) => {
     if(err){
       res.send(err);
     }
     else {
-      res.send(TorneoNuevo);
+      res.send(FechaNueva);
     }
   })
 });
 
 //UPDATE
 router.put('/:id', (req, res, next) => {
-  Torneo.findOne({_id: req.params.id}, function (err, result) {
+  Fecha.findOne({_id: req.params.id}, function (err, result) {
     if (err) {
       res.status(500).send(err);
     } 
     else if (result) {
-      result.nombre = req.body.nombre || result.nombre;
-      result.fechas = req.body.fechas || result.fechas;
+      result.numero = req.body.numero || result.numero;
+      result.partidos = req.body.partidos || result.partidos;
       result.save((err, result) => {
         if(err) {
           res.status(500).send(err)
@@ -70,27 +70,27 @@ router.put('/:id', (req, res, next) => {
       });
     }
     else {
-      res.send("El Torneo que quiere modificar no existe");
+      res.send("La fecha que quiere modificar no existe");
     }
   });
 });
 
 //DELETE ONE
 router.delete('/:id', (req, res, next) => {
-  Torneo.findOne({_id: req.params.id}, function (err, result) {
+  Fecha.findOne({_id: req.params.id}, function (err, result) {
     if (err) {
       res.status(500).send(err);
     }
     else if(result) {
-      result.remove((err, deleteTorneo) => {
+      result.remove((err, deleteFecha) => {
         if(err) {
           res.status(500).send(err);
         }
-        res.status(200).send(deleteTorneo);
+        res.status(200).send(deleteFecha);
       })
     }
     else {
-      res.send("No existe ese Torneo");
+      res.send("No existe esa fecha");
     }
   });
 });
