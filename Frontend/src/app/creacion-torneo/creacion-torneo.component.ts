@@ -88,7 +88,7 @@ clickOnTournamentButton(){
       //arma fecha pares de equipos
       fechas.push(upper.map((e, i) => [e, lower[i]]));
     }
-    this.torneo = fechas.map(f =>  f.map(p => p.map(e => e.url)));    
+    this.torneo = fechas.map(f =>  f.map(p => p));    
     
   }
 

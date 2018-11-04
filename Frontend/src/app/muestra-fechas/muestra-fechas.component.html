@@ -1,8 +1,8 @@
-<h1>Muestra fechas component</h1>
 <carousel-component >
-    <div *ngFor="let fecha of torneo;" class="item-carousel">
+    <div *ngFor="let fecha of torneo;let i = index" class="item-carousel">
+      <h2>FECHA {{i+1}}</h2><hr>
       <div *ngFor="let partido of fecha;" > <!--Aca deberia iterarse un componente tipo card que muestre el partido mandandoselo-->
-        <img *ngFor="let equipo of partido" src="./assets/img/{{equipo}}" height="50px" alt="">
+        <app-tarjeta-partido [partido]=partido></app-tarjeta-partido>
         <br>
       </div>
     </div>
