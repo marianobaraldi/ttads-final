@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+input[type=checkbox]:checked + label.equipoLabel {
+   /* text-decoration: line-through;*/
+    color: darkgrey;
+    font-style: italic;
+}
+
+input[type=checkbox]:checked + label.equipoLabel img {
+    opacity: 0.3;
+}
+
+.btnEquipo{
+    color: #000;
+    background-color: #c9c9d0;
+    border-color: #868e96;
+    font-weight: bold;
+}
+.equipoLabel{
+    font-family: 'Raleway', sans-serif;
+}
+.btnGen{
+    margin-top: 5px;
+    border: 2px solid #262680;
+    border-radius: 15px;
+    background-color: #adcde8;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+
+}
+.btnGen:hover{
+    background-color: #648fb3;
+}

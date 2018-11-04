@@ -1,14 +1,15 @@
 
-<h2>Equipos</h2>
-<ul>
-  <li *ngFor="let equi of equipos" class="btn btn-secondary">
+<h2 [ngClass]="{'collapse': isCollapsed}" >Equipos</h2>
+<div [ngClass]="{'collapse': isCollapsed}" class="row accordion-body collapse">
+  <div *ngFor="let equi of equipos" class="col-md-3 btn btnEquipo">
       <input type="checkbox" name="seleccionados" id="{{equi._id}}" (change)="onChange(equi, $event.target.checked)">
-      <label for="{{equi._id}}">{{equi.nombre}}
+      <label class="equipoLabel" for="{{equi._id}}">{{equi.nombre}}
         <img src="./assets/img/{{equi.url}}" height="50px" alt="">
       </label>
-  </li>
-</ul>
-<button (click)="clickOnTournamentButton()">Generar torneo</button>
+    </div>
+</div>
+
+<button class="btn btn-lg btnGen" (click)="isCollapsed = !isCollapsed" (click)="clickOnTournamentButton()">{{isCollapsed? 'Cambiar equipos' : 'Generar Torneo'}}</button>
 
 <ng-template #dynamic></ng-template>
 
