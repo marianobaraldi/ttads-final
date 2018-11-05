@@ -1,7 +1,9 @@
+<button class="btn btn-lg btnConfirmar"  (click)="confirmarTorneo()"> Confirmar Torneo</button>
+
 <carousel-component >
-    <div *ngFor="let fecha of torneo;let i = index" class="item-carousel">
+    <div *ngFor="let fecha of torneo.fechas;let i = index" class="item-carousel">
       <h2>FECHA {{i+1}}</h2><hr>
-      <div *ngFor="let partido of fecha;" > <!--Aca deberia iterarse un componente tipo card que muestre el partido mandandoselo-->
+      <div *ngFor="let partido of fecha.partidos;">
         <app-tarjeta-partido [partido]=partido></app-tarjeta-partido>
         <br>
       </div>

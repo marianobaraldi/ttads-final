@@ -2,7 +2,9 @@ import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular
 import {HttpClient} from '@angular/common/http';
 
 import{ LoaderFechas } from '../loader-fechas.service'
-import { MuestraFechasComponent } from '../muestra-fechas/muestra-fechas.component';
+import { Torneo } from '../models/torneo';
+import { Fecha } from '../models/fecha';
+import { Partido } from '../models/partido';
 
 @Component({
   selector: 'app-creacion-torneo',
@@ -11,7 +13,8 @@ import { MuestraFechasComponent } from '../muestra-fechas/muestra-fechas.compone
 })
 export class CreacionTorneoComponent implements OnInit {
   urlEquipos: string = 'http://localhost:3000/api/equipos/';  
-  torneo;torneoDev;
+  // torneoArray;
+  torneo : Torneo;
   equipos;
   equiposElegidosArray: Array<any> = [];
   serviceLoader;
@@ -53,6 +56,7 @@ clickOnTournamentButton(){
   this.generaTorneo();
   this.viewContainerRef.clear();
   this.serviceLoader.addDynamicComponent();
+  // this.serviceLoader.componentRef.instance.torneo = this.torneoArray;
   this.serviceLoader.componentRef.instance.torneo = this.torneo;
 }
 
@@ -61,8 +65,11 @@ clickOnTournamentButton(){
     //mezcla los elementos
     equipos = equipos.map(a => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map(a => a[1]);
     var cantFechas = equipos.length-1;
-    var fechas = []; //torneo final, arreglo de fechas
-    var f = [];  //una fecha 
+  //  var fechasArray = []; //torneo final, arreglo de fechas
+  //  var f = [];  //una fecha 
+    var fechas : Fecha[] = [];
+    var fe: Fecha;
+    var partido : Partido;
 
     //Metodo ROUND-ROBIN
     //https://stackoverflow.com/questions/6648512/scheduling-algorithm-for-a-round-robin-tournament
@@ -73,8 +80,17 @@ clickOnTournamentButton(){
     lower = lower.reverse();
 
     //arma primera fecha emparejando los elementos de upper y lower
-    fechas.push(upper.map((e, i) => [e, lower[i]]));
-
+    // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
+    fechas.push(fe = {
+      numero: 0,
+      partidos:      
+        upper.map((e, i) => partido = {
+                                      fecha_hora: new Date(),
+                                      equipo_local: e,
+                                      equipo_visitante: lower[i],
+                                      eventos: []
+        })
+      });
     
     for (var i = 0; i < cantFechas-1; i++) {    //resto de las fechas      
       //lo guardo como array para
@@ -86,9 +102,26 @@ clickOnTournamentButton(){
       lower = lower.slice(1,lower.length).concat(lastUpper)
 
       //arma fecha pares de equipos
-      fechas.push(upper.map((e, i) => [e, lower[i]]));
+      // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
+      fechas.push(fe = {
+        numero: i+1,
+        partidos:      
+          upper.map((e, i) => partido = {
+                                        fecha_hora: new Date(),
+                                        equipo_local: e,
+                                        equipo_visitante: lower[i],
+                                        eventos: []
+          })
+        });
+
     }
-    this.torneo = fechas.map(f =>  f.map(p => p));    
+    // this.torneoArray = fechasArray.map(f =>  f.map(p => p));   
+    this.torneo = {
+      nombre: "TorneoTest",
+      fechas: fechas
+    } 
+    console.log("Pero mira lo que es este torneooooo");
+    console.log(this.torneo);
     
   }
 

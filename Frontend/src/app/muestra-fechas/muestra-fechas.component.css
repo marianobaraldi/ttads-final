@@ -12,3 +12,15 @@
 h2{
     margin-top: 10px;
 }
+
+.btnConfirmar{
+    margin-top: 5px;
+    border: 2px solid #262680;
+    border-radius: 15px;
+    background-color: #2dcc2a;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+.btnConfirmar:hover{
+    background-color: #0aab07;
+}
