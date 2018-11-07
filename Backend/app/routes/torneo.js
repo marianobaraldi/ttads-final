@@ -19,8 +19,10 @@ router.get('/', (req, res, next) => {
     populate({
       path: 'fechas',
       populate: {
-        
-        
+        path: 'partidos',
+        populate: {
+          path: 'equipo_visitante'
+        }
       },
     }).
     exec(function (err, result) {
