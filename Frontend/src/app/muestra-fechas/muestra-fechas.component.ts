@@ -23,7 +23,9 @@ export class MuestraFechasComponent implements OnInit {
   }
 
   confirmarTorneo(){
-    console.log("ENTREEEEEEEE123123");
+    console.log("Confirmando torneo...");
+    
+    console.log(JSON.stringify(this.torneo));
     this.http.post<Torneo>(this.urlTorneos, this.torneo, httpOptions ).subscribe(
       res => {
         console.log(res);

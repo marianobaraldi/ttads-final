@@ -5,7 +5,19 @@ var router=require('express').Router()
 //GET ALL
 router.get('/', (req, res, next) => {
   Fecha.find().
-  populate('partidos').
+  populate({
+    path: 'partidos',
+        populate: {
+          path: 'equipo_local'
+        }
+  }).
+  populate({
+    path: 'partidos',
+        populate: {
+          path: 'equipo_visitante'
+        }
+  }).
+
   exec(function (err, result) {
     if (err) {
       res.status(500).send(err);

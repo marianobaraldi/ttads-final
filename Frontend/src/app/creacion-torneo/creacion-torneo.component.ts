@@ -82,7 +82,7 @@ clickOnTournamentButton(){
     //arma primera fecha emparejando los elementos de upper y lower
     // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
     fechas.push(fe = {
-      numero: 0,
+      numero: 1,
       partidos:      
         upper.map((e, i) => partido = {
                                       fecha_hora: new Date(),
@@ -92,7 +92,7 @@ clickOnTournamentButton(){
         })
       });
     
-    for (var i = 0; i < cantFechas-1; i++) {    //resto de las fechas      
+    for (var i = 1; i < cantFechas; i++) {    //resto de las fechas      
       //lo guardo como array para
       var lastUpper = upper.slice(upper.length-1,upper.length);      
       
@@ -104,7 +104,7 @@ clickOnTournamentButton(){
       //arma fecha pares de equipos
       // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
       fechas.push(fe = {
-        numero: i+1,
+        numero: i+1,  //i+1 porque arranca de la "Fecha 1"
         partidos:      
           upper.map((e, i) => partido = {
                                         fecha_hora: new Date(),
@@ -117,7 +117,7 @@ clickOnTournamentButton(){
     }
     // this.torneoArray = fechasArray.map(f =>  f.map(p => p));   
     this.torneo = {
-      nombre: "TorneoTest",
+      nombre: "Torneo"+new Date().getTime(),
       fechas: fechas
     } 
     console.log("Pero mira lo que es este torneooooo");
