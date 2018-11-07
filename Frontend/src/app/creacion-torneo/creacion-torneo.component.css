@@ -26,7 +26,6 @@ input[type=checkbox]:checked + label.equipoLabel img {
     background-color: #adcde8;
     font-weight: bold;
     font-family: 'Raleway', sans-serif;
-
 }
 .btnGen:hover{
     background-color: #648fb3;
