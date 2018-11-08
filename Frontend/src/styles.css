@@ -17,10 +17,10 @@
     color: black;
 }
 .background {
-    background-color: blueviolet;
+    background-color: #8bb14c;
 }
 .line-divider {
-    background-color: blueviolet;
+    background-color: #8bb14c;
     padding-top: 1px;
 }
 .background-mid {
@@ -40,8 +40,8 @@
     margin-left: 20%;
 }
 .btn-versus {
-    background-color: blueviolet;
-    border-color: blueviolet;
+    background-color: #8bb14c;
+    border-color: #8bb14c;
 }
 .detalle-title-equipo {
     text-align: center;
