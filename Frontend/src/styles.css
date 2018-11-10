@@ -21,10 +21,15 @@
     color: black;
 }
 .background {
-    background-color: #8bb14c;
+    /* background-color: #fff8a7; */
+    background: #a3d39c;
+    background: -moz-linear-gradient(top, #a3d39c 0%, #fff8a7 45%);
+    background: -webkit-linear-gradient(top, #a3d39c 0%,#fff8a7 45%);
+    background: linear-gradient(to bottom, #a3d39c 0%,#fff8a7 45%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a3d39c', endColorstr='#fff8a7',GradientType=0 );
 }
 .line-divider {
-    background-color: #8bb14c;
+    background-color: #fff8a7;
     padding-top: 1px;
 }
 .background-mid {

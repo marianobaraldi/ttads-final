@@ -1,11 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     padding-top: 54px;
+    font-family: 'Roboto', sans-serif !important;
+
 }
 @media (min-width: 992px) {
     body {
         padding-top: 56px;
     }
 }
+
+.titulo{
+    /* text-decoration: underline; */
+    color: black;
+}
+
+.badge{
+    
+    font-style: italic;
+}
+hr{
+    border-top: 1px solid rgb(144, 144, 144);
+}
+.torneosCard{
+    background-color: azure;
+    border-radius: 2rem;
+    color: #333333;
+}
+
+.card-header{
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.card-title{
+    margin-bottom: 0px;
+}
+
 .card {
     height: 100%;
 }

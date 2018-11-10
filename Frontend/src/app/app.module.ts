@@ -15,6 +15,7 @@ import { MuestraFechasComponent } from './muestra-fechas/muestra-fechas.componen
 import { LoaderFechas } from './loader-fechas.service'
 import {CarouselModule} from "angular2-carousel";
 import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
+import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.compo
     MyDashboardComponent,
     CreacionTorneoComponent,
     MuestraFechasComponent,
-    TarjetaPartidoComponent
+    TarjetaPartidoComponent,
+    BarraEquiposComponent
   ],
   imports: [
     BrowserModule,

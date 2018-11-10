@@ -2,10 +2,13 @@
  <div class="container">
 
   <div class="row">
-    <div class="col-sm-8">
-      <h2 class="mt-4">Creación de Torneos <span class="badge badge-secondary">Nuevo!</span></h2>
-      <p> Te atrae la idea de organizar tus propios torneos, con todos los equipos del fútbol Argentino? Ahora podes hacerlo! Con la nueva funcionalidad de creación de torneos tenés la posibilidad de planificar las fechas y partidos de los clubes más importantes del país.</p>
-        <p>
+    <div class="col-sm-8 torneosCard">
+      <h2 class="titulo mt-2">Creación de Torneos <span class="badge badge-secondary">Nuevo!</span></h2>
+      <hr>
+      <h5> Querés organizar tus propios torneos con todos los equipos del fútbol Argentino?</h5>
+      <p> Ahora podes hacerlo! Con la nueva funcionalidad de creación de torneos tenés la posibilidad de planificar las fechas y partidos de los clubes más importantes del país.</p>  
+      <br>
+      <p>
           <a routerLink="/nuevo-torneo">
             <button type="button" class="btn btn-primary btn-lg">
               <i class="fa fa-trophy"></i>
@@ -13,12 +16,11 @@
             </button>
           </a>
         </p>
-
     </div>
     <div class="col-sm-4">
-      <div class="card bg-light ">
+      <div class="card torneosCard">
 			  	<div class="card-header">
-			    	<h3 class="card-title">Logueo en el sitio</h3>
+			    	<h5 class="card-title">Logueo en el sitio</h5>
 			 	</div>
 			  	<div class="card-body">
 			    	<form accept-charset="UTF-8" role="form">
@@ -34,12 +36,12 @@
 			    	    		<input name="remember" type="checkbox" value="Remember Me"> Recordarme
 			    	    	</label>
 			    	    </div> -->
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Ingresar">
+			    		<input class="btn btn-success btn-block" type="submit" value="Ingresar">
 			    	</fieldset>
 			      	</form>
                       <hr/>
                     <!-- <span><h4>Conectar con Facebook</h4></span> -->
-                    <input class="btn btn-lg btn-facebook btn-block" type="submit" value="Ingresar con facebook">
+                    <input class="btn btn-facebook btn-block" type="submit" value="Ingresar con facebook">
 			    </div>
 			</div>
     </div>
