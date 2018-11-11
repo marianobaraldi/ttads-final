@@ -30,6 +30,36 @@ router.get('/', (req, res, next) => {
   });
 });
 
+//GET PARTIDOS POR EQUIPO
+router.get('/:equipo', (req, res, next) => {
+  Partido.find().
+  or([{equipo_local: req.params.equipo},{equipo_visitante: req.params.equipo}]).
+  sort({fecha_hora: 'asc'}).
+  populate('equipo_local').
+  populate('equipo_visitante').
+  populate({
+    path: 'eventos',
+    populate: { path: 'equipo' }   
+  }).
+  populate({
+    path: 'eventos',
+    populate: { path: 'tipo_evento' }
+  })
+  .exec(function (err, partido) {
+    if (err) {
+      res.send(err);
+    }
+    else if(partido.length == 0) {
+      res.send("Ningún partido encontrado");
+    }
+    else {
+      res.json(partido);
+    }
+  });
+});
+
+
+
 //GET ALL ACTIVE GAMES
 router.get('/active', (req, res, next) => {
   var today = new Date();

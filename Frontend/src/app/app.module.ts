@@ -38,6 +38,10 @@ import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
+        path: 'partidos/:id',
+        component: PartidosComponent
+      },
+      {
         path: 'detalle/:id',
         component: DetallePartidoComponent
       },
