@@ -31,7 +31,7 @@ router.get('/', (req, res, next) => {
 });
 
 //GET PARTIDOS POR EQUIPO
-router.get('/:equipo', (req, res, next) => {
+router.get('/equipo/:equipo', (req, res, next) => {
   Partido.find().
   or([{equipo_local: req.params.equipo},{equipo_visitante: req.params.equipo}]).
   sort({fecha_hora: 'asc'}).

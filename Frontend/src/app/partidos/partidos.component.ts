@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PartidosComponent implements OnInit {
 
-  urlActivos: string = 'http://localhost:3000/api/partidos/';
+  urlActivos: string = 'http://localhost:3000/api/partidos/equipo/';
   partidos;
   mensaje;
  
