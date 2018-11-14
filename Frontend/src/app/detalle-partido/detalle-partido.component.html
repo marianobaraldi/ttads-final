@@ -1,10 +1,10 @@
 <hr>
 <div class="row background-mid">
-    <img src="{{partido.equipo_local.url}}" alt="" class="col-md-2 detalle-img">
+    <img src="./assets/img/{{partido.equipo_local.url}}" alt="" class="col-md-2 detalle-img">
       <h3 class="detalle-title-equipo col-md-3">{{partido.equipo_local.nombre}}</h3>
       <p class="detalle-title-versus col-md-2">VS</p>
       <h3 class="detalle-title-equipo col-md-3">{{partido.equipo_visitante.nombre}}</h3>
-    <img src="{{partido.equipo_visitante.url}}" alt="" class="col-md-2 detalle-img">
+    <img src="./assets/img/{{partido.equipo_visitante.url}}" alt="" class="col-md-2 detalle-img">
   <div *ngIf="partido.eventos.length != 0; then content else other_content" ></div>
   <ng-template #content>
     <h1 class="col-md-12 detalle-title">Resumen del Partido</h1>

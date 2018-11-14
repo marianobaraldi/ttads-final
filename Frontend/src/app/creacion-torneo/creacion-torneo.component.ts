@@ -70,6 +70,7 @@ clickOnTournamentButton(){
     var fechas : Fecha[] = [];
     var fe: Fecha;
     var partido : Partido;
+    var fechaHora = new Date();
 
     //Metodo ROUND-ROBIN
     //https://stackoverflow.com/questions/6648512/scheduling-algorithm-for-a-round-robin-tournament
@@ -78,14 +79,14 @@ clickOnTournamentButton(){
     var upper = equipos.filter((_,i) => i % 2 == 0);
     var lower = equipos.filter((_,i) => i % 2 == 1);
     lower = lower.reverse();
-
+    
     //arma primera fecha emparejando los elementos de upper y lower
     // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
     fechas.push(fe = {
       numero: 1,
       partidos:      
         upper.map((e, i) => partido = {
-                                      fecha_hora: new Date(),
+                                      fecha_hora: JSON.parse(JSON.stringify(fechaHora)), //Esto es para que copie EL VALOR de la variable, si no lo hago asi copia la referencia y no me sirve
                                       equipo_local: e,
                                       equipo_visitante: lower[i],
                                       eventos: []
@@ -101,13 +102,16 @@ clickOnTournamentButton(){
        //Todos los elementos de lower se corren para la izquierda (se pierde el primero), y entra al final el ultimo de upper
       lower = lower.slice(1,lower.length).concat(lastUpper)
 
+      //la fecha_hora del partido va a ser +1 semana cada fecha
+      fechaHora.setDate(fechaHora.getDate() + 7);
+
       //arma fecha pares de equipos
       // fechasArray.push(upper.map((e, i) => [e, lower[i]]));
       fechas.push(fe = {
         numero: i+1,  //i+1 porque arranca de la "Fecha 1"
         partidos:      
           upper.map((e, i) => partido = {
-                                        fecha_hora: new Date(),
+                                        fecha_hora: JSON.parse(JSON.stringify(fechaHora)),  //Esto es para que copie EL VALOR de la variable, si no lo hago asi copia la referencia y no me sirve
                                         equipo_local: e,
                                         equipo_visitante: lower[i],
                                         eventos: []
@@ -120,7 +124,7 @@ clickOnTournamentButton(){
       nombre: "Torneo"+new Date().getTime(),
       fechas: fechas
     } 
-    console.log("Pero mira lo que es este torneooooo");
+    console.log("Torneo preview: ");
     console.log(this.torneo);
     
   }

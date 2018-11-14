@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~font-awesome/css/font-awesome.css';
+
+
+
 .ul-style {
     list-style: none;
     padding: 0
 }
-.versus-cartel {
-    text-align: center;
-    margin-top: 9%;
-}
+
 .equipo-cartel {
     text-align: center;
     margin-top: 8%;
@@ -17,10 +18,15 @@
     color: black;
 }
 .background {
-    background-color: blueviolet;
+    /* background-color: #fff8a7; */
+    background: #a3d39c;
+    background: -moz-linear-gradient(top, #a3d39c 0%, #fff8a7 45%);
+    background: -webkit-linear-gradient(top, #a3d39c 0%,#fff8a7 45%);
+    background: linear-gradient(to bottom, #a3d39c 0%,#fff8a7 45%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a3d39c', endColorstr='#fff8a7',GradientType=0 );
 }
 .line-divider {
-    background-color: blueviolet;
+    background-color: #fff8a7;
     padding-top: 1px;
 }
 .background-mid {
@@ -34,14 +40,10 @@
 .header-container {
     margin-top: 2%;
 }
-.escudo-equipo {
-    width: 63%;
-    height: 63%;
-    margin-left: 20%;
-}
+
 .btn-versus {
-    background-color: blueviolet;
-    border-color: blueviolet;
+    background-color: #8bb14c;
+    border-color: #8bb14c;
 }
 .detalle-title-equipo {
     text-align: center;

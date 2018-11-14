@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let equipo of equipos">
+    <a routerLink="/partidos/{{equipo._id}}">
+      <img src="./assets/img/{{equipo.url}}" height="40px" alt="">
+    </a>
+  </li>
+</ul>

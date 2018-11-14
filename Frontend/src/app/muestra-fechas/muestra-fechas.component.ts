@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Torneo } from '../models/torneo';
+import {Router} from "@angular/router"
+
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'})
@@ -17,7 +20,7 @@ export class MuestraFechasComponent implements OnInit {
   urlTorneos: string = 'http://localhost:3000/api/torneos/';  
   torneo: Torneo;
   respuesta;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,6 +36,7 @@ export class MuestraFechasComponent implements OnInit {
         console.log(err);
       }
     );
+    this.router.navigate(['/']);
   }
   
 }

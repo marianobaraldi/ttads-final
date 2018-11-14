@@ -1,0 +1,11 @@
+ul {
+    list-style-type: none;
+    margin: -35px 10% 0 15%;    /* top right bot left*/
+    padding-bottom: 10px;
+    display:table;
+    width:80%;
+}
+
+li {
+    display:table-cell;
+}
