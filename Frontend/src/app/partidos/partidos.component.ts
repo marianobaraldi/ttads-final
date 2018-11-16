@@ -18,7 +18,7 @@ export class PartidosComponent implements OnInit {
   constructor(private http: HttpClient,  private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {   //recibir params
+    this.route.params.subscribe(params => {//recibir params
       this.partidos = [];
       this.mensaje = "";
        this.http.get(this.urlActivos+params['id']).subscribe(data => {  //traer json

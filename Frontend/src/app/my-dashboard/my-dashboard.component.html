@@ -17,7 +17,7 @@
           </a>
         </p>
     </div>
-    <div class="col-sm-4">
+    <div *ngIf="showLogin;else user_photo" class="col-sm-4">
       <div class="card torneosCard">
 			  	<div class="card-header">
 			    	<h5 class="card-title">Logueo en el sitio</h5>
@@ -31,20 +31,29 @@
 			    		<div class="form-group">
 			    			<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
 			    		</div>
-			    <!-- 		<div class="checkbox">
-			    	    	<label>
-			    	    		<input name="remember" type="checkbox" value="Remember Me"> Recordarme
-			    	    	</label>
-			    	    </div> -->
-			    		<input class="btn btn-success btn-block" type="submit" value="Ingresar">
+			    		<input class="btn btn-success btn-block"  type="submit" value="Ingresar">
 			    	</fieldset>
 			      	</form>
                       <hr/>
-                    <!-- <span><h4>Conectar con Facebook</h4></span> -->
-                    <input class="btn btn-facebook btn-block" type="submit" value="Ingresar con facebook">
+                    <input class="btn btn-google btn-block" (click)="signinWithGoogle()" type="button" value="Ingresar con Google">
 			    </div>
-			</div>
+      </div>
     </div>
+      <ng-template #user_photo>
+          <div class="col-sm-4">
+          <div class="card torneosCard">
+              <div class="card-header">
+                <h5 class="card-title">{{this.email}}</h5>
+             </div>
+              <div class="card-body text-center">
+                  <img src={{this.urlUserPhoto}} alt="">
+              </div>
+          </div>          
+        </div>
+      </ng-template>
+      
+
+    
   </div>
   <!-- /.row -->
 

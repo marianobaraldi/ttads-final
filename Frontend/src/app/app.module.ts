@@ -16,6 +16,18 @@ import { LoaderFechas } from './loader-fechas.service'
 import {CarouselModule} from "angular2-carousel";
 import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
 import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
+import { SocialLoginModule,AuthServiceConfig,GoogleLoginProvider } from "angular4-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("656512028146-pdharlfe2docln6afq78i6gqurpbomac.apps.googleusercontent.com")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -35,6 +47,7 @@ import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
     HttpClientModule,
     HttpModule,
     CarouselModule,
+    SocialLoginModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -55,12 +68,21 @@ import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
         component: MyDashboardComponent
       },
       {
+        path: 'principal/:test',
+        component: MyDashboardComponent
+      },
+      {
         path: 'nuevo-torneo',
         component: CreacionTorneoComponent
       }
     ])
   ],
-  providers: [LoaderFechas],
+  providers: [LoaderFechas,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+    ],
   bootstrap: [AppComponent],
   entryComponents: [MuestraFechasComponent]
 })
