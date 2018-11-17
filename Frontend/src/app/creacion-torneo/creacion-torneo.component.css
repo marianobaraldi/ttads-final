@@ -10,6 +10,11 @@ input[type=checkbox]:checked + label.equipoLabel img {
     opacity: 0.3;
 }
 
+#nombreTorneo{
+    margin-left: 5%;
+    width: 25%;
+}
+
 .btnEquipo{
     color: #000;
     background-color: #c9c9d0;

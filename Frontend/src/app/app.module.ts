@@ -17,6 +17,7 @@ import {CarouselModule} from "angular2-carousel";
 import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
 import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
 import { SocialLoginModule,AuthServiceConfig,GoogleLoginProvider } from "angular4-social-login";
+import { FormsModule } from '@angular/forms';
 
 let config = new AuthServiceConfig([
   {
@@ -48,6 +49,7 @@ export function provideConfig() {
     HttpModule,
     CarouselModule,
     SocialLoginModule,
+    FormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {

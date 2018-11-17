@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
 import{ LoaderFechas } from '../loader-fechas.service'
 import { Torneo } from '../models/torneo';
 import { Fecha } from '../models/fecha';
@@ -18,6 +17,7 @@ export class CreacionTorneoComponent implements OnInit {
   equipos;
   equiposElegidosArray: Array<any> = [];
   serviceLoader;
+  nombreTorneo="";
   
   @ViewChild('dynamic', { 
     read: ViewContainerRef 
@@ -119,9 +119,10 @@ clickOnTournamentButton(){
         });
 
     }
-    // this.torneoArray = fechasArray.map(f =>  f.map(p => p));   
+
+    if(this.nombreTorneo=="") this.nombreTorneo=="Torneo"+new Date().getTime();
     this.torneo = {
-      nombre: "Torneo"+new Date().getTime(),
+      nombre: this.nombreTorneo,
       fechas: fechas
     } 
     console.log("Torneo preview: ");

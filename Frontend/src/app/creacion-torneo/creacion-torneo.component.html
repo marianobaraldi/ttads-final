@@ -1,5 +1,8 @@
-
-<h2 [ngClass]="{'collapse': isCollapsed}" >Equipos</h2>
+<div class="form-inline">
+  <h3>Nuevo torneo:</h3>
+  <input class="form-control" [disabled]="isCollapsed" [(ngModel)]="nombreTorneo" type="text" id="nombreTorneo" placeholder="Nombre del torneo">
+</div>
+<h3 [ngClass]="{'collapse': isCollapsed}" >Equipos</h3>
 <div [ngClass]="{'collapse': isCollapsed}" class="row accordion-body collapse">
   <div *ngFor="let equi of equipos" class="col-md-3 btn btnEquipo">
       <input type="checkbox" name="seleccionados" id="{{equi._id}}" (change)="onChange(equi, $event.target.checked)">
@@ -9,7 +12,7 @@
     </div>
 </div>
 
-<button class="btn btn-lg btnGen" (click)="isCollapsed = !isCollapsed" (click)="clickOnTournamentButton()">{{isCollapsed? 'Cambiar equipos' : 'Generar Torneo'}}</button>
+<button [disabled]="nombreTorneo === ''" class="btn btn-lg btnGen" (click)="isCollapsed = !isCollapsed" (click)="clickOnTournamentButton()">{{isCollapsed? 'Cambiar equipos' : 'Generar Torneo'}}</button>
 
 <ng-template #dynamic></ng-template>
 
