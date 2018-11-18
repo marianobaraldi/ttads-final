@@ -18,7 +18,7 @@ export class CreacionTorneoComponent implements OnInit {
   equiposElegidosArray: Array<any> = [];
   serviceLoader;
   nombreTorneo="";
-  
+  isOdd = true;   //arranco en true para que 0 no sea válido
   @ViewChild('dynamic', { 
     read: ViewContainerRef 
   }) viewContainerRef: ViewContainerRef
@@ -49,6 +49,12 @@ export class CreacionTorneoComponent implements OnInit {
       let index = this.equiposElegidosArray.indexOf(equipo);
       this.equiposElegidosArray.splice(index,1);
     }
+    if(this.equiposElegidosArray.length == 0){
+      this.isOdd = true;
+    }else{
+      this.equiposElegidosArray.length % 2 ? this.isOdd=true : this.isOdd = false;
+    }
+
 }
 
 clickOnTournamentButton(){
