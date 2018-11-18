@@ -55,6 +55,7 @@ router.get('/:id', (req, res, next) => {
 //CREATE
 router.post('/', (req, res, next) => {
   let nombreNuevo = req.body.nombre;
+  let imagenNueva = req.body.imagen;
   let fechas = req.body.fechas;
 
   var idFechas = [];
@@ -86,6 +87,7 @@ router.post('/', (req, res, next) => {
 
   var TorneoNuevo = new Torneo({
     nombre: nombreNuevo,
+    imagen: imagenNueva,
     fechas: idFechas
   })
   
@@ -110,6 +112,7 @@ router.put('/:id', (req, res, next) => {
     }
     else if (result) {
       result.nombre = req.body.nombre || result.nombre;
+      result.imagen = req.body.imagen || result.imagen;
       result.fechas = req.body.fechas || result.fechas;
       result.save((err, result) => {
         if (err) {

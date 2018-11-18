@@ -1,8 +1,22 @@
 <div class="form-inline">
   <h3>Nuevo torneo:</h3>
   <input class="form-control" [disabled]="isCollapsed" [(ngModel)]="nombreTorneo" type="text" id="nombreTorneo" placeholder="Nombre del torneo">
+
+  <h4>Copa: </h4>
+  <div class="imagen-selector">
+    <input checked="checked" [(ngModel)]="imagenSeleccionada" id="copa1" type="radio" value="copa1.png" />
+    <label class="drinkcard-cc copa1" for="copa1"></label>
+    <input [(ngModel)]="imagenSeleccionada" id="copa2" type="radio" value="copa2.png" />
+    <label class="drinkcard-cc copa2"for="copa2"></label>
+    <input [(ngModel)]="imagenSeleccionada" id="copa3" type="radio" value="copa3.png" />
+    <label class="drinkcard-cc copa3"for="copa3"></label>
+    <input [(ngModel)]="imagenSeleccionada" id="copa4" type="radio" value="copa4.png" />
+    <label class="drinkcard-cc copa4"for="copa4"></label>
+  </div>
+
+
 </div>
-<h3 [ngClass]="{'collapse': isCollapsed}" >Equipos</h3>
+<h3 [ngClass]="{'collapse': isCollapsed}" >Equipos:</h3>
 <div [ngClass]="{'collapse': isCollapsed}" class="row accordion-body collapse">
   <div *ngFor="let equi of equipos" class="col-md-3 btn btnEquipo">
       <input type="checkbox" name="seleccionados" id="{{equi._id}}" (change)="onChange(equi, $event.target.checked)">

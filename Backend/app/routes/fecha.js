@@ -107,4 +107,15 @@ router.delete('/:id', (req, res, next) => {
   });
 });
 
+//delete all
+router.delete('/all/yes', (req, res, next) => {
+  Fecha.remove({}, function(err) { 
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(200);
+    console.log('all Fechas removed') 
+  });
+});
+
 module.exports=router;

@@ -19,6 +19,8 @@ export class CreacionTorneoComponent implements OnInit {
   serviceLoader;
   nombreTorneo="";
   isOdd = true;   //arranco en true para que 0 no sea válido
+  imagenSeleccionada="copa1.png";
+
   @ViewChild('dynamic', { 
     read: ViewContainerRef 
   }) viewContainerRef: ViewContainerRef
@@ -129,6 +131,7 @@ clickOnTournamentButton(){
     if(this.nombreTorneo=="") this.nombreTorneo=="Torneo"+new Date().getTime();
     this.torneo = {
       nombre: this.nombreTorneo,
+      imagen: this.imagenSeleccionada,
       fechas: fechas
     } 
     console.log("Torneo preview: ");
