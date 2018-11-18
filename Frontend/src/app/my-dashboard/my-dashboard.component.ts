@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, GoogleLoginProvider } from "angular4-social-login";
-import {Router, ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-my-dashboard',
@@ -8,13 +9,14 @@ import {Router, ActivatedRoute} from "@angular/router";
   styleUrls: ['./my-dashboard.component.css']
 })
 export class MyDashboardComponent implements OnInit {
-
+  urlTorneos: string = 'http://localhost:3000/api/torneos/'; 
+  torneos;
   showLogin : Boolean = true;
   urlUserPhoto;
   email;
 
-  constructor( private socialAuthService: AuthService,
-    private router: Router,
+  constructor(private http: HttpClient,
+    private socialAuthService: AuthService,
     private route: ActivatedRoute ) {}
 
   nuevoTorneo(){
@@ -37,6 +39,10 @@ export class MyDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.http.get(this.urlTorneos).subscribe(data => {
+      this.torneos = data;
+    });
+
     this.route.params.subscribe(params => { 
 
       if(!(localStorage.getItem('token') == null)){//TODO:check if its a valid token (?)
