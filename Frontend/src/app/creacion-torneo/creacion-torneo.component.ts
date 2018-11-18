@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
 import{ LoaderFechas } from '../loader-fechas.service'
 import { Torneo } from '../models/torneo';
 import { Fecha } from '../models/fecha';
@@ -18,7 +17,10 @@ export class CreacionTorneoComponent implements OnInit {
   equipos;
   equiposElegidosArray: Array<any> = [];
   serviceLoader;
-  
+  nombreTorneo="";
+  isOdd = true;   //arranco en true para que 0 no sea válido
+  imagenSeleccionada="copa1.png";
+
   @ViewChild('dynamic', { 
     read: ViewContainerRef 
   }) viewContainerRef: ViewContainerRef
@@ -49,6 +51,12 @@ export class CreacionTorneoComponent implements OnInit {
       let index = this.equiposElegidosArray.indexOf(equipo);
       this.equiposElegidosArray.splice(index,1);
     }
+    if(this.equiposElegidosArray.length == 0){
+      this.isOdd = true;
+    }else{
+      this.equiposElegidosArray.length % 2 ? this.isOdd=true : this.isOdd = false;
+    }
+
 }
 
 clickOnTournamentButton(){
@@ -119,9 +127,11 @@ clickOnTournamentButton(){
         });
 
     }
-    // this.torneoArray = fechasArray.map(f =>  f.map(p => p));   
+
+    if(this.nombreTorneo=="") this.nombreTorneo=="Torneo"+new Date().getTime();
     this.torneo = {
-      nombre: "Torneo"+new Date().getTime(),
+      nombre: this.nombreTorneo,
+      imagen: this.imagenSeleccionada,
       fechas: fechas
     } 
     console.log("Torneo preview: ");

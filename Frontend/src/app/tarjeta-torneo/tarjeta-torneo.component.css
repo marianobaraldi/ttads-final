@@ -1,0 +1,12 @@
+img {
+    max-height: 150px;
+    max-width: 150px;
+}
+.card-img-overlay{
+    text-align: right;
+}
+
+app-tarjeta-partido{
+    max-width: 150px;
+    float: right;
+}

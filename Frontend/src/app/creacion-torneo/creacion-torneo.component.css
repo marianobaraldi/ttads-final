@@ -1,5 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+/* Selector de imagenes  */
+.imagen-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.copa1{background-image:url(../../assets/img/copa1.png);}
+.copa2{background-image:url(../../assets/img/copa2.png);}
+.copa3{background-image:url(../../assets/img/copa3.png);}
+.copa4{background-image:url(../../assets/img/copa4.png);}
+
+.imagen-selector input:active +.drinkcard-cc{opacity: .9;}
+.imagen-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.2) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.2) grayscale(1) opacity(.7);
+            filter: brightness(1.2) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+/* Fin selector imagenes*/ 
+
 input[type=checkbox]:checked + label.equipoLabel {
    /* text-decoration: line-through;*/
     color: darkgrey;
@@ -8,6 +46,11 @@ input[type=checkbox]:checked + label.equipoLabel {
 
 input[type=checkbox]:checked + label.equipoLabel img {
     opacity: 0.3;
+}
+
+#nombreTorneo{
+    margin: 0 5% 0 5%;
+    width: 25%;
 }
 
 .btnEquipo{
