@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Torneo } from '../models/torneo';
+import { Torneo } from '../../models/torneo';
 import {Router} from "@angular/router"
 
 

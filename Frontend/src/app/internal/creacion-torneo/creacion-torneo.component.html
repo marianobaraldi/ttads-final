@@ -21,7 +21,7 @@
   <div *ngFor="let equi of equipos" class="col-md-3 btn btnEquipo">
       <input type="checkbox" name="seleccionados" id="{{equi._id}}" (change)="onChange(equi, $event.target.checked)">
       <label class="equipoLabel" for="{{equi._id}}">{{equi.nombre}}
-        <img src="./assets/img/{{equi.url}}" height="50px" alt="">
+        <img src="../../../assets/img/{{equi.url}}" height="50px" alt="">
       </label>
     </div>
 </div>

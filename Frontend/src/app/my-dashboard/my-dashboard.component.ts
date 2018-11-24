@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, GoogleLoginProvider } from "angular4-social-login";
+import { AuthService, GoogleLoginProvider, SocialUser } from "angular4-social-login";
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from '@angular/common/http';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Component({
   selector: 'app-my-dashboard',
@@ -12,30 +13,27 @@ export class MyDashboardComponent implements OnInit {
   urlTorneos: string = 'http://localhost:3000/api/torneos/'; 
   torneos;
   showLogin : Boolean = true;
-  urlUserPhoto;
-  email;
+  user: SocialUser;
 
   constructor(private http: HttpClient,
-    private socialAuthService: AuthService,
+    private guard: AuthGuard,
     private route: ActivatedRoute ) {}
 
-  nuevoTorneo(){
-    
-  }
-  
+
   public signinWithGoogle () {
     let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
   
-    this.socialAuthService.signIn(socialPlatformProvider).then(
+    this.guard.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => { //on success
          localStorage.setItem("token",userData.authToken);
-         this.showLogin = false;
-         localStorage.setItem("url_photo",userData.photoUrl);
-         this.urlUserPhoto = userData.photoUrl;
-         localStorage.setItem("email",userData.email);
-         this.email = userData.email;
-      } //TODO handle error
+      }
     );
+  }
+
+  signOut(){
+    this.guard.socialAuthService.signOut();
+    console.log( this.guard.socialAuthService.authState);
+    localStorage.removeItem("token");
   }
 
   ngOnInit() {
@@ -43,15 +41,13 @@ export class MyDashboardComponent implements OnInit {
       this.torneos = data;
     });
 
-    this.route.params.subscribe(params => { 
+    this.guard.socialAuthService.authState.subscribe((user) => {
+      console.log("USER ES " + user + " en dashboard")
+      this.showLogin = (user == null);
+      this.user = user;
+    });
 
-      if(!(localStorage.getItem('token') == null)){//TODO:check if its a valid token (?)
 
-        this.showLogin = false;
-        this.urlUserPhoto = localStorage.getItem('url_photo');
-        this.email = localStorage.getItem('email');
-      }
-    }) 
   }
 
 }

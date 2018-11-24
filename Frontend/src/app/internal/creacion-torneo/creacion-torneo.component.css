@@ -7,10 +7,10 @@
        -moz-appearance:none;
             appearance:none;
 }
-.copa1{background-image:url(../../assets/img/copa1.png);}
-.copa2{background-image:url(../../assets/img/copa2.png);}
-.copa3{background-image:url(../../assets/img/copa3.png);}
-.copa4{background-image:url(../../assets/img/copa4.png);}
+.copa1{background-image:url(../../../assets/img/copa1.png);}
+.copa2{background-image:url(../../../assets/img/copa2.png);}
+.copa3{background-image:url(../../../assets/img/copa3.png);}
+.copa4{background-image:url(../../../assets/img/copa4.png);}
 
 .imagen-selector input:active +.drinkcard-cc{opacity: .9;}
 .imagen-selector input:checked +.drinkcard-cc{
