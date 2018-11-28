@@ -1,68 +1,61 @@
- <!-- Page Content -->
- <div class="container">
+<!-- Page Content -->
+<div class="container">
 
   <div class="row">
     <div class="col-sm-8 torneosCard">
       <h2 class="titulo mt-2">Creación de Torneos <span class="badge badge-secondary">Nuevo!</span></h2>
       <hr>
       <h5> Querés organizar tus propios torneos con todos los equipos del fútbol Argentino?</h5>
-      <p> Ahora podes hacerlo! Con la nueva funcionalidad de creación de torneos tenés la posibilidad de planificar las fechas y partidos de los clubes más importantes del país.</p>  
+      <p> Ahora podes hacerlo! Con la nueva funcionalidad de creación de torneos tenés la posibilidad de planificar las
+        fechas y partidos de los clubes más importantes del país.</p>
       <br>
       <p>
-          <a routerLink="/nuevo-torneo">
-            <button type="button" class="btn btn-primary btn-lg">
-              <i class="fa fa-trophy"></i>
-              Nuevo Torneo
-            </button>
-          </a>
-        </p>
+        <a routerLink="/nuevo-torneo">
+          <button type="button" class="btn btn-primary btn-lg">
+            <i class="fa fa-trophy"></i>
+            Nuevo Torneo
+          </button>
+        </a>
+      </p>
     </div>
     <div *ngIf="showLogin;else user_photo" class="col-sm-4">
       <div class="card torneosCard">
-			  	<div class="card-header">
-			    	<h5 class="card-title">Logueo en el sitio</h5>
-			 	</div>
-			  	<div class="card-body">
-			    	<form accept-charset="UTF-8" role="form">
-                    <fieldset>
-			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="tumail@example.com" name="email" type="text">
-			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
-			    		</div>
-			    		<input class="btn btn-success btn-block"  type="submit" value="Ingresar">
-			    	</fieldset>
-			      	</form>
-                      <hr/>
-                    <input class="btn btn-google btn-block" (click)="signinWithGoogle()" type="button" value="Ingresar con Google">
-			    </div>
+        <div class="card-header">
+          <h5 class="card-title">Logueo en el sitio</h5>
+        </div>
+        <div class="card-body text-center">
+          <img src="./assets/img/formsite-google-login.png" height="90px" alt="">
+          <hr />
+          <button class="btn btn-google btn-block" (click)="signinWithGoogle()">Ingresar con Google</button>
+        </div>
       </div>
     </div>
-      <ng-template #user_photo>
-          <div class="col-sm-4">
-          <div class="card torneosCard">
-              <div class="card-header">
-                <h5 class="card-title">{{this.email}}</h5>
-             </div>
-              <div class="card-body text-center">
-                  <img src={{this.urlUserPhoto}} alt="">
-              </div>
-          </div>          
+    <ng-template #user_photo>
+      <div class="col-sm-4">
+        <div class="card torneosCard">
+          <div class="card-header">
+            <h5 class="card-title">{{this.user.email}}</h5>
+          </div>
+          <div class="card-body text-center">
+            <img src={{this.user.photoUrl}} alt="">
+            <hr />
+            <button class="btn btn-google btn-block btn-danger" (click)="signOut()">Cerrar sesión</button>
+          </div>
         </div>
-      </ng-template>
-      
+      </div>
+    </ng-template>
 
-    
+
+
   </div>
-  <!-- /.row -->
+  <!-- /.row 
 
   <div class="row">
-      <div *ngFor="let torneo of torneos" class="col-sm-4 my-4">
-        <app-tarjeta-torneo [torneo]=torneo></app-tarjeta-torneo>
-      </div>
+    <div *ngFor="let torneo of torneos" class="col-sm-4 my-4">
+      <app-tarjeta-torneo [torneo]=torneo></app-tarjeta-torneo>
+    </div>
   </div>
-  <!-- /.row -->
+ - /.row -->
 
 </div>
 <!-- /.container -->

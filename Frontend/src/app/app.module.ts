@@ -10,15 +10,10 @@ import { RouterModule }   from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from "@angular/http";
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
-import { CreacionTorneoComponent } from './creacion-torneo/creacion-torneo.component';
-import { MuestraFechasComponent } from './muestra-fechas/muestra-fechas.component';
-import { LoaderFechas } from './loader-fechas.service'
-import {CarouselModule} from "angular2-carousel";
-import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
 import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
 import { SocialLoginModule,AuthServiceConfig,GoogleLoginProvider } from "angular4-social-login";
 import { FormsModule } from '@angular/forms';
-import { TarjetaTorneoComponent } from './tarjeta-torneo/tarjeta-torneo.component';
+import { AuthGuard } from './guards/auth.guard';
 
 let config = new AuthServiceConfig([
   {
@@ -39,17 +34,12 @@ export function provideConfig() {
     HeaderComponent,
     DetallePartidoComponent,
     MyDashboardComponent,
-    CreacionTorneoComponent,
-    MuestraFechasComponent,
-    TarjetaPartidoComponent,
-    BarraEquiposComponent,
-    TarjetaTorneoComponent
+    BarraEquiposComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    CarouselModule,
     SocialLoginModule,
     FormsModule,
     NgbModule.forRoot(),
@@ -72,22 +62,18 @@ export function provideConfig() {
         component: MyDashboardComponent
       },
       {
-        path: 'principal/:test',
-        component: MyDashboardComponent
-      },
-      {
         path: 'nuevo-torneo',
-        component: CreacionTorneoComponent
-      }
+        loadChildren: 'app/internal/internal.module#InternalModule'
+      },
     ])
   ],
-  providers: [LoaderFechas,
+  providers: [
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    AuthGuard
     ],
-  bootstrap: [AppComponent],
-  entryComponents: [MuestraFechasComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

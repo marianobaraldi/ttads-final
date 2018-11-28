@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import{ LoaderFechas } from '../loader-fechas.service'
-import { Torneo } from '../models/torneo';
-import { Fecha } from '../models/fecha';
-import { Partido } from '../models/partido';
+import{ LoaderFechas } from '../../loader-fechas.service'
+import { Torneo } from '../../models/torneo';
+import { Fecha } from '../../models/fecha';
+import { Partido } from '../../models/partido';
 
 @Component({
   selector: 'app-creacion-torneo',

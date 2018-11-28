@@ -5,7 +5,7 @@ import {
   ReflectiveInjector
 } from '@angular/core'
 
-import { MuestraFechasComponent } from './muestra-fechas/muestra-fechas.component'
+import { MuestraFechasComponent } from './internal/muestra-fechas/muestra-fechas.component'
 @Injectable()
 export class LoaderFechas {
 
