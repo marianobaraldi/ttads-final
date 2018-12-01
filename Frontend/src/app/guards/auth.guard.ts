@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  private loggedIn;
+  //private loggedIn;
 
   constructor(
     public socialAuthService: AuthService,
@@ -18,20 +18,15 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      this.socialAuthService.authState.subscribe((user) => {
-        console.log("USER ES " + user)
-        this.loggedIn = (user != null);
+      return this.socialAuthService.authState.map((user) => {
+        if(user != null){
+          return true;
+        } else {
+          this.router.navigate(['']);
+          return false;
+        }
       });
-
-      if (!this.loggedIn) {
-        console.log("LOGGED IN ES "+ this.loggedIn)
-        this.router.navigate(['']);
-        return false;
-      }
       
-      console.log("EL AUTH STATE NO ES NULL")
-      console.log("EL AUTH STATE es " + this.socialAuthService.authState)
-      return true;
   }
 
 }
