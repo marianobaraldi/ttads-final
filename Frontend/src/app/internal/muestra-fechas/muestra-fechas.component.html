@@ -4,7 +4,7 @@
     <div *ngFor="let fecha of torneo.fechas;let i = index" class="item-carousel">
       <h2>FECHA {{i+1}}</h2><hr>
       <div *ngFor="let partido of fecha.partidos;">
-        <app-tarjeta-partido [partido]=partido></app-tarjeta-partido>
+        <app-partido-fecha [partido]=partido></app-partido-fecha>
         <br>
       </div>
     </div>

@@ -9,7 +9,7 @@
         fechas y partidos de los clubes más importantes del país.</p>
       <br>
       <p>
-        <a routerLink="/nuevo-torneo">
+        <a routerLink="/internal/creacion-torneo">
           <button type="button" class="btn btn-primary btn-lg">
             <i class="fa fa-trophy"></i>
             Nuevo Torneo
@@ -21,7 +21,6 @@
     <app-login (loginChange)='manageTournamentCards($event)'></app-login>
 
   </div>
-
 
   <div *ngIf="showTournamentCards" class="row">
     <div *ngFor="let torneo of torneos" class="col-sm-4 my-4">

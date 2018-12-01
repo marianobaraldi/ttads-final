@@ -68,7 +68,7 @@ export function provideConfig() {
         component: MyDashboardComponent
       },
       {
-        path: 'nuevo-torneo',
+        path: '',
         loadChildren: 'app/internal/internal.module#InternalModule'
       },
     ])

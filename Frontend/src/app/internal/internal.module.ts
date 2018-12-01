@@ -7,13 +7,14 @@ import { AuthGuard } from '../guards/auth.guard';
 import { FormsModule } from '@angular/forms';
 import {CarouselModule} from "angular2-carousel";
 import { LoaderFechas } from '../loader-fechas.service'
+import { PartidoFechaComponent } from './partido-fecha/partido-fecha.component'
 
 
 const routes: Routes = [
-  {         
-        path: '',
-        component: CreacionTorneoComponent,
-        canActivate: [AuthGuard]   
+  { path: 'internal', canActivate: [AuthGuard],
+    children: [
+      { path: 'creacion-torneo', component: CreacionTorneoComponent }
+    ]
   }
 ];
 
@@ -26,7 +27,8 @@ const routes: Routes = [
   ],
   declarations: [
     CreacionTorneoComponent,
-    MuestraFechasComponent
+    MuestraFechasComponent,
+    PartidoFechaComponent
   ],
   exports: [RouterModule],
   providers: [LoaderFechas],
