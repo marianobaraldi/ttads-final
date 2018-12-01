@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Torneo } from '../../models/torneo';
-import { Partido } from '../../models/partido';
+import { Torneo } from '../models/torneo';
+import { Partido } from '../models/partido';
 
 @Component({
   selector: 'app-tarjeta-torneo',

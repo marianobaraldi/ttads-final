@@ -1,0 +1,17 @@
+.card-header{
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.card-title{
+    margin-bottom: 0px;
+}
+
+.card {
+    margin: 20px;
+    height: 100%;
+}
+.white{
+    color:#000;
+    background-color:#fff;
+}

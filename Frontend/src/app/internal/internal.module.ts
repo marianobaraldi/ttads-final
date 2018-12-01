@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { CreacionTorneoComponent } from './creacion-torneo/creacion-torneo.component';
 import { MuestraFechasComponent } from './muestra-fechas/muestra-fechas.component';
-import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
-import { TarjetaTorneoComponent } from './tarjeta-torneo/tarjeta-torneo.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { FormsModule } from '@angular/forms';
 import {CarouselModule} from "angular2-carousel";
@@ -28,9 +26,7 @@ const routes: Routes = [
   ],
   declarations: [
     CreacionTorneoComponent,
-    MuestraFechasComponent,
-    TarjetaPartidoComponent,
-    TarjetaTorneoComponent
+    MuestraFechasComponent
   ],
   exports: [RouterModule],
   providers: [LoaderFechas],

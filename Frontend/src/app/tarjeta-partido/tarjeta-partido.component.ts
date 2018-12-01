@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Partido } from '../../models/partido';
+import { Partido } from '../models/partido';
 
 @Component({
   selector: 'app-tarjeta-partido',
