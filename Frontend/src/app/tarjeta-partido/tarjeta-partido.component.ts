@@ -9,8 +9,6 @@ import { Partido } from '../models/partido';
 export class TarjetaPartidoComponent implements OnInit {
 
   @Input() partido: Partido;
-  
-  @Input() mini;
 
   constructor() { }
 

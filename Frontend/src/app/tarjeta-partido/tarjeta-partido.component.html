@@ -1,17 +1,8 @@
 <div class="tarjeta row">  
-    <div [hidden]="mini" class="col-md-4 leftTeam">
-      {{partido.equipo_local.nombre}}
+    <div [ngClass]="{ 'col-md-4': mini,  'col-md-1': !mini }">
+        <img src="../../../assets/img/{{partido.equipo_local.url}}" height="80px" class="leftTeam">
     </div>
     <div [ngClass]="{ 'col-md-4': mini,  'col-md-1': !mini }">
-        <img src="../../../assets/img/{{partido.equipo_local.url}}" height="50px" alt="">
-    </div>
-    <div [hidden]="mini" class="col-md-1">
-      <h4>VS</h4>
-    </div>
-    <div [ngClass]="{ 'col-md-4': mini,  'col-md-1': !mini }">
-        <img src="../../../assets/img/{{partido.equipo_visitante.url}}" height="50px" alt="">
-    </div>
-    <div [hidden]="mini"  class="col-md-4 rightTeam">
-      {{partido.equipo_visitante.nombre}}
+        <img src="../../../assets/img/{{partido.equipo_visitante.url}}" height="80px" class="rightTeam">
     </div>
 </div>

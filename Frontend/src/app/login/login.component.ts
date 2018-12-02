@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef  } from '@angular/core';
 import { GoogleLoginProvider, SocialUser } from "angular4-social-login";
 import { AuthGuard } from '../guards/auth.guard';
 
@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   user: SocialUser;
   @Output() loginChange = new EventEmitter();
 
-  constructor(private guard: AuthGuard) { }
+  constructor(private guard: AuthGuard,
+    private cd: ChangeDetectorRef) { }
 
 
   public signinWithGoogle () {
@@ -21,7 +22,10 @@ export class LoginComponent implements OnInit {
     this.guard.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => { 
          localStorage.setItem("token",userData.authToken);
-         this.loginChange.emit(true);         
+         this.showLogin = false;
+         this.user = userData;
+         this.loginChange.emit(true);   
+         this.refresh();      
       }
     );
   }
@@ -29,7 +33,10 @@ export class LoginComponent implements OnInit {
   signOut(){
     this.guard.socialAuthService.signOut().then(() =>{
       localStorage.removeItem("token");
+      this.showLogin = true;
+      this.user = null;
       this.loginChange.emit(false);
+      this.refresh();   
     });
   }
 
@@ -40,6 +47,10 @@ export class LoginComponent implements OnInit {
       this.user = user;
       this.loginChange.emit(!this.showLogin);
     });
+  }
+
+  refresh() {
+    this.cd.detectChanges();
   }
 
 }

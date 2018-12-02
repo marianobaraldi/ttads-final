@@ -1,7 +1,7 @@
 var mongoose =require('mongoose');
 
 var fechaSchema= new mongoose.Schema({
-  numero: {type: Number, required: true, unique: true},
+  numero: {type: Number, required: true},
   partidos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'partido' }]
 });
 

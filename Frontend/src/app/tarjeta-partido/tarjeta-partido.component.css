@@ -1,21 +1,9 @@
-
-.tarjeta{
-    font-family: 'Raleway', sans-serif; /* la importe en creacion-torneo*/
-    font-weight: bold;
-}
-
-
 .leftTeam{
-    padding-top: 10px;
-    padding-right: 0px;
-    text-align: right;
+    padding: 5%;
+    margin-right: 25px;
 }
 
 .rightTeam{
-    padding-top: 10px;
-    text-align: left;
+    padding-top: 5%;
+    margin-left: 70px;
 }
-
-/* img{
-    width: 100%;
-} */
