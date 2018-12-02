@@ -1,8 +1,10 @@
+
+<h6>Partido destacado</h6>
 <div class="tarjeta row">  
-    <div [ngClass]="{ 'col-md-4': mini,  'col-md-1': !mini }">
-        <img src="../../../assets/img/{{partido.equipo_local.url}}" height="80px" class="leftTeam">
+    <div class=col-md-6>
+        <img src="../../../assets/img/{{partido.equipo_local.url}}" height="80px" class="teamLogo">
     </div>
-    <div [ngClass]="{ 'col-md-4': mini,  'col-md-1': !mini }">
-        <img src="../../../assets/img/{{partido.equipo_visitante.url}}" height="80px" class="rightTeam">
+    <div class=col-md-6>
+        <img src="../../../assets/img/{{partido.equipo_visitante.url}}" height="80px" class="teamLogo">
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-8 torneosCard">
+    <div class="col-sm-8 torneosCard text-center">
       <h2 class="titulo mt-2">Creación de Torneos <span class="badge badge-secondary">Nuevo!</span></h2>
       <hr>
       <h5> Querés organizar tus propios torneos con todos los equipos del fútbol Argentino?</h5>
@@ -12,7 +12,8 @@
         <a routerLink="/internal/creacion-torneo">
           <button type="button" class="btn btn-primary btn-lg">
             <i class="fa fa-trophy"></i>
-            Nuevo Torneo
+            <span *ngIf="showTournamentCards; else must_login">Nuevo torneo</span>
+            <ng-template #must_login><span>Debes iniciar sesión para usar esta funcionalidad</span></ng-template>
           </button>
         </a>
       </p>
