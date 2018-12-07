@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Partido } from '../../models/partido';
 
 @Component({
-  selector: 'app-tarjeta-partido',
-  templateUrl: './tarjeta-partido.component.html',
-  styleUrls: ['./tarjeta-partido.component.css']
+  selector: 'app-partido-fecha',
+  templateUrl: './partido-fecha.component.html',
+  styleUrls: ['./partido-fecha.component.css']
 })
-export class TarjetaPartidoComponent implements OnInit {
+export class PartidoFechaComponent implements OnInit {
 
   @Input() partido: Partido;
   
@@ -18,3 +18,7 @@ export class TarjetaPartidoComponent implements OnInit {
   }
 
 }
+
+
+
+

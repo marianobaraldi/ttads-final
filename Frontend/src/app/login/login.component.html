@@ -1,0 +1,26 @@
+<div *ngIf="showLogin;else user_card" class="login-comp">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Logueo en el sitio</h5>
+    </div>
+    <div class="card-body text-center">
+      <img src="./assets/img/formsite-google-login.png" height="90px">
+      <hr />
+      <button class="btn btn-google btn-block" (click)="signinWithGoogle()">Ingresar con Google</button>
+    </div>
+  </div>
+</div>
+<ng-template #user_card class="login-comp">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">{{this.user.email}}</h5>
+      </div>
+      <div class="card-body text-center">
+        <img src={{this.user.photoUrl}} width="110px">
+        <hr />
+        <button class="btn btn-google btn-block btn-danger" (click)="signOut()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -32,11 +32,12 @@ export class MuestraFechasComponent implements OnInit {
     this.http.post<Torneo>(this.urlTorneos, this.torneo, httpOptions ).subscribe(
       res => {
         console.log(res);
+        this.router.navigate(['/']);
       },err => {
         console.log(err);
+        this.router.navigate(['/']);
       }
     );
-    this.router.navigate(['/']);
   }
   
 }

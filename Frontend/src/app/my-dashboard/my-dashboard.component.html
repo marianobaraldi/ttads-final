@@ -1,8 +1,7 @@
-<!-- Page Content -->
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-8 torneosCard">
+    <div class="col-sm-8 torneosCard text-center">
       <h2 class="titulo mt-2">Creación de Torneos <span class="badge badge-secondary">Nuevo!</span></h2>
       <hr>
       <h5> Querés organizar tus propios torneos con todos los equipos del fútbol Argentino?</h5>
@@ -10,52 +9,24 @@
         fechas y partidos de los clubes más importantes del país.</p>
       <br>
       <p>
-        <a routerLink="/nuevo-torneo">
+        <a routerLink="/internal/creacion-torneo">
           <button type="button" class="btn btn-primary btn-lg">
             <i class="fa fa-trophy"></i>
-            Nuevo Torneo
+            <span *ngIf="showTournamentCards; else must_login">Nuevo torneo</span>
+            <ng-template #must_login><span>Debes iniciar sesión para usar esta funcionalidad</span></ng-template>
           </button>
         </a>
       </p>
     </div>
-    <div *ngIf="showLogin;else user_photo" class="col-sm-4">
-      <div class="card torneosCard">
-        <div class="card-header">
-          <h5 class="card-title">Logueo en el sitio</h5>
-        </div>
-        <div class="card-body text-center">
-          <img src="./assets/img/formsite-google-login.png" height="90px" alt="">
-          <hr />
-          <button class="btn btn-google btn-block" (click)="signinWithGoogle()">Ingresar con Google</button>
-        </div>
-      </div>
-    </div>
-    <ng-template #user_photo>
-      <div class="col-sm-4">
-        <div class="card torneosCard">
-          <div class="card-header">
-            <h5 class="card-title">{{this.user.email}}</h5>
-          </div>
-          <div class="card-body text-center">
-            <img src={{this.user.photoUrl}} alt="">
-            <hr />
-            <button class="btn btn-google btn-block btn-danger" (click)="signOut()">Cerrar sesión</button>
-          </div>
-        </div>
-      </div>
-    </ng-template>
 
-
+    <app-login (loginChange)='manageTournamentCards($event)'></app-login>
 
   </div>
-  <!-- /.row 
 
-  <div class="row">
+  <div *ngIf="showTournamentCards" class="row">
     <div *ngFor="let torneo of torneos" class="col-sm-4 my-4">
       <app-tarjeta-torneo [torneo]=torneo></app-tarjeta-torneo>
     </div>
   </div>
- - /.row -->
 
 </div>
-<!-- /.container -->

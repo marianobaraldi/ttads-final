@@ -1,12 +1,13 @@
 img {
     max-height: 150px;
     max-width: 150px;
+    padding: 5%;
 }
-.card-img-overlay{
-    text-align: right;
+.card-title{
+    font-size: 18px;
 }
 
 app-tarjeta-partido{
-    max-width: 150px;
+    max-width: 180px;
     float: right;
 }

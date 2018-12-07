@@ -14,6 +14,9 @@ import { BarraEquiposComponent } from './barra-equipos/barra-equipos.component';
 import { SocialLoginModule,AuthServiceConfig,GoogleLoginProvider } from "angular4-social-login";
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import { TarjetaPartidoComponent } from './tarjeta-partido/tarjeta-partido.component';
+import { TarjetaTorneoComponent } from './tarjeta-torneo/tarjeta-torneo.component';
+import { LoginComponent } from './login/login.component';
 
 let config = new AuthServiceConfig([
   {
@@ -34,7 +37,10 @@ export function provideConfig() {
     HeaderComponent,
     DetallePartidoComponent,
     MyDashboardComponent,
-    BarraEquiposComponent
+    BarraEquiposComponent,
+    TarjetaPartidoComponent,
+    TarjetaTorneoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,7 @@ export function provideConfig() {
         component: MyDashboardComponent
       },
       {
-        path: 'nuevo-torneo',
+        path: '',
         loadChildren: 'app/internal/internal.module#InternalModule'
       },
     ])
