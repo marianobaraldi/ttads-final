@@ -131,21 +131,39 @@ router.put('/:id', (req, res, next) => {
 
 //DELETE ONE
 router.delete('/:id', (req, res, next) => {
-  Torneo.findOne({ _id: req.params.id }, function (err, result) {
-    if (err) {
-      res.status(500).send(err);
-    }
-    else if (result) {
-      result.remove((err, deleteTorneo) => {
+  Torneo.findOne({ _id: req.params.id }).
+    populate({
+      path: 'fechas',
+      populate: {
+        path: 'partidos'
+        }
+      }).exec(function (err, result) {
         if (err) {
           res.status(500).send(err);
         }
-        res.status(200).send(deleteTorneo);
-      })
-    }
-    else {
-      res.send("No existe ese Torneo");
-    }
+        else if (result) {
+          var fechas = [];
+          fechas = result.fechas;
+          fechas.forEach(fecha => {
+            console.log("BORRANDO : fecha "+ fecha.numero)
+            var partidos =[];
+            partidos = fecha.partidos;
+            partidos.forEach(partido => {
+              console.log("BORRANDO : " + partido.equipo_local + " vs " + partido.equipo_visitante)
+              partido.remove(); //borro los partidos
+            })
+            fecha.remove();   //borro las fechas
+          });
+           result.remove((err, deleteTorneo) => {  //borro el torneo
+            if (err) {
+              res.status(500).send(err);
+            }
+            res.status(200).send(deleteTorneo);
+          })
+        }
+        else {
+          res.send("No existe ese Torneo");
+        }
   });
 });
 
